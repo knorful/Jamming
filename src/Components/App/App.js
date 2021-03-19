@@ -58,6 +58,15 @@ class App extends Component {
       });
     }
   };
+  removeTrack = (track) => {
+    let newPlaylist = this.state.playlistTracks.filter(
+      (song) => song.id !== track.id
+    );
+
+    this.setState({
+      playlistTracks: newPlaylist,
+    });
+  };
   render() {
     return (
       <div>
@@ -74,6 +83,7 @@ class App extends Component {
               searchResults={this.state.searchResults}
             />
             <Playlist
+              onRemove={this.removeTrack}
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
             />
