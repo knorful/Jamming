@@ -25,6 +25,7 @@ export const Spotify = {
   },
 
   async search(term) {
+    Spotify.getAccessToken();
     let trackObjects = [];
     try {
       await axios
@@ -47,5 +48,44 @@ export const Spotify = {
       console.timeLog("Spotify search ERROR");
     }
     return trackObjects;
+  },
+
+  async savePlaylist(playlistName, trackURIs) {
+    let accessToken = Spotify.getAccessToken();
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    if (!playlistName && !trackURIs) {
+      return;
+    }
+
+    let user_id = await axios
+      .get("https://api.spotify.com/v1/me", headers)
+      .then((res) => res.data.id)
+      .catch((e) => "User id fetch error!");
+
+    let playlistID = await axios
+      .post(
+        `https://api.spotify.com/v1/users/${user_id}/playlists`,
+        { name: playlistName },
+        headers
+      )
+      .then((res) => res.data.id)
+      .catch((e) => console.log("Playlist create failure!", e));
+
+    await axios
+      .post(
+        `https://api.spotify.com/v1/playlists/${playlistID}/tracks`,
+        {
+          uris: trackURIs,
+        },
+        headers
+      )
+      .then((res) => console.log("Songs added to playlist", res))
+      .catch((e) => console.log("Error adding songs to playlist!", e));
   },
 };

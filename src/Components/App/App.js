@@ -7,52 +7,17 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    searchResults: [
-      {
-        name: "All Falls Down",
-        artist: "Kanye West",
-        album: "College Dropout",
-        id: 1,
-      },
-      {
-        name: "Dead Presidents",
-        artist: "Jay-Z",
-        album: "Reasonable Doubt",
-        id: 2,
-      },
-      {
-        name: "Pink + White",
-        artist: "Frank Ocean",
-        album: "Blonde",
-        id: 3,
-      },
-    ],
+    searchResults: [],
     playlistName: "New Playlist",
-    playlistTracks: [
-      {
-        name: "Roll Some Mo'",
-        artist: "Lucky Daye",
-        album: "Lucky Daye",
-        id: 4,
-      },
-      {
-        name: "Flex On 'Em",
-        artist: "Money J",
-        album: "Dollarz",
-        id: 5,
-      },
-      {
-        name: "Jungle Jim",
-        artist: "Taxadermist",
-        album: "Jamz",
-        id: 6,
-      },
-    ],
+    playlistTracks: [],
   };
 
   addTrack = (track) => {
     let copyPlaylist = this.state.playlistTracks.slice();
-    if (this.state.playlistTracks.find((song) => song.id !== track.id)) {
+    if (
+      this.state.playlistTracks.find((song) => song.id !== track.id) ||
+      copyPlaylist.length === 0
+    ) {
       copyPlaylist.push(track);
       this.setState({
         playlistTracks: copyPlaylist,
@@ -84,10 +49,16 @@ class App extends Component {
     });
   };
 
-  savePlaylist = () => {};
+  savePlaylist = () => {
+    let tracksUri = this.state.playlistTracks.map((track) => track.uri);
+    Spotify.savePlaylist(this.state.playlistName, tracksUri);
+    this.setState({
+      playlistName: "New Playlist",
+      playlistTracks: [],
+    });
+  };
 
   render() {
-    Spotify.getAccessToken();
     return (
       <div>
         <header>
@@ -103,6 +74,7 @@ class App extends Component {
               searchResults={this.state.searchResults}
             />
             <Playlist
+              onAdd={this.addTrack}
               onSave={this.savePlaylist}
               onRemove={this.removeTrack}
               onNameChange={this.updatePlaylistName}
