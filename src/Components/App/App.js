@@ -58,6 +58,7 @@ class App extends Component {
       });
     }
   };
+
   removeTrack = (track) => {
     let newPlaylist = this.state.playlistTracks.filter(
       (song) => song.id !== track.id
@@ -67,6 +68,19 @@ class App extends Component {
       playlistTracks: newPlaylist,
     });
   };
+
+  updatePlaylistName = (newPlaylistName) => {
+    this.setState({
+      playlistName: newPlaylistName,
+    });
+  };
+
+  search = (term) => {
+    console.log(term);
+  };
+
+  savePlaylist = () => {};
+
   render() {
     return (
       <div>
@@ -76,14 +90,16 @@ class App extends Component {
           </h1>
         </header>
         <main className="App">
-          <SearchBar />
+          <SearchBar onSearch={this.search} />
           <div className="App-playlist">
             <SearchResults
               onAdd={this.addTrack}
               searchResults={this.state.searchResults}
             />
             <Playlist
+              onSave={this.savePlaylist}
               onRemove={this.removeTrack}
+              onNameChange={this.updatePlaylistName}
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
             />
