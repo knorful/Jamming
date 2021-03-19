@@ -48,6 +48,16 @@ class App extends Component {
       },
     ],
   };
+
+  addTrack = (track) => {
+    let copyPlaylist = this.state.playlistTracks.slice();
+    if (this.state.playlistTracks.find((song) => song.id !== track.id)) {
+      copyPlaylist.push(track);
+      this.setState({
+        playlistTracks: copyPlaylist,
+      });
+    }
+  };
   render() {
     return (
       <div>
@@ -59,7 +69,10 @@ class App extends Component {
         <main className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} />
+            <SearchResults
+              onAdd={this.addTrack}
+              searchResults={this.state.searchResults}
+            />
             <Playlist
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
