@@ -40,6 +40,21 @@
   background-color: rgb(49, 63, 55);
 }
 
+.playlist-msg {
+  margin-top: 25px;
+  animation-name: fade;
+  animation-duration: 3s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
