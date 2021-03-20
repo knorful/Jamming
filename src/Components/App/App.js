@@ -11,7 +11,8 @@ class App extends Component {
     searchResults: [],
     playlistName: "New Playlist",
     playlistTracks: [],
-    searching: true,
+    searching: false,
+    saving: true,
   };
 
   addTrack = (track) => {
@@ -55,16 +56,16 @@ class App extends Component {
 
   handleSearchClick = () => {
     this.setState({
-      searching: false,
+      searching: true,
     });
     setTimeout(() => {
       this.setState({
-        searching: true,
+        searching: false,
       });
     }, 2000);
   };
 
-  savePlaylist = (e) => {
+  savePlaylist = () => {
     let tracksUri = this.state.playlistTracks.map((track) => track.uri);
     Spotify.savePlaylist(this.state.playlistName, tracksUri);
     this.setState({
@@ -84,13 +85,15 @@ class App extends Component {
         <main className="App">
           <SearchBar onSearch={this.search} click={this.handleSearchClick} />
           <div className="App-playlist">
-            {this.state.searching ? (
+            {!this.state.searching ? (
               <SearchResults
                 onAdd={this.addTrack}
                 searchResults={this.state.searchResults}
               />
             ) : (
-              <Loader type="Audio" color="#89b198" height={80} width={80} />
+              <div className="results-loader">
+                <Loader type="Audio" color="#89b198" height={80} width={80} />
+              </div>
             )}
             <Playlist
               onAdd={this.addTrack}

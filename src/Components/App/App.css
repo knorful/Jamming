@@ -38,6 +38,10 @@ h2 {
   padding: 0 17% 10%;
 }
 
+.results-loader {
+  margin: auto;
+}
+
 footer {
   display: flex;
   justify-content: center;
