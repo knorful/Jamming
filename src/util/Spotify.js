@@ -26,7 +26,6 @@ export const Spotify = {
   },
 
   async search(term) {
-    Spotify.getAccessToken();
     let trackObjects = [];
     try {
       await axios
