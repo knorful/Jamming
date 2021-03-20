@@ -1,6 +1,7 @@
 import axios from "axios";
 const CLIENT_ID = "5585dd32cc0046a0a6ca2f6142633b73";
-const REDIRECT_URI = "http://sonics.surge.sh/";
+// const REDIRECT_URI = "http://sonics.surge.sh/";
+const REDIRECT_URI = "http://localhost:3000/callback";
 let accessToken = "";
 let expiresIn = "";
 
