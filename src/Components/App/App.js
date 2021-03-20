@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
+import Loader from "react-loader-spinner";
 import { Spotify } from "../../util/Spotify";
 import "./App.css";
 
@@ -10,6 +11,7 @@ class App extends Component {
     searchResults: [],
     playlistName: "New Playlist",
     playlistTracks: [],
+    searching: true,
   };
 
   addTrack = (track) => {
@@ -42,11 +44,24 @@ class App extends Component {
   };
 
   search = (term) => {
-    Spotify.search(term).then((result) => {
-      this.setState({
-        searchResults: result,
-      });
+    Spotify.search(term)
+      .then((result) => {
+        this.setState({
+          searchResults: result,
+        });
+      })
+      .catch((e) => console.log("There was an error during search!", e));
+  };
+
+  handleSearchClick = () => {
+    this.setState({
+      searching: false,
     });
+    setTimeout(() => {
+      this.setState({
+        searching: true,
+      });
+    }, 2000);
   };
 
   savePlaylist = (e) => {
@@ -67,12 +82,16 @@ class App extends Component {
           </h1>
         </header>
         <main className="App">
-          <SearchBar onSearch={this.search} />
+          <SearchBar onSearch={this.search} click={this.handleSearchClick} />
           <div className="App-playlist">
-            <SearchResults
-              onAdd={this.addTrack}
-              searchResults={this.state.searchResults}
-            />
+            {this.state.searching ? (
+              <SearchResults
+                onAdd={this.addTrack}
+                searchResults={this.state.searchResults}
+              />
+            ) : (
+              <Loader type="Audio" color="#89b198" height={80} width={80} />
+            )}
             <Playlist
               onAdd={this.addTrack}
               onSave={this.savePlaylist}
@@ -84,7 +103,7 @@ class App extends Component {
           </div>
         </main>
         <footer>
-          <p>Jammming</p>
+          <p>Jammming 2021</p>
           <p>Powered by the Spotify Web API</p>
         </footer>
       </div>

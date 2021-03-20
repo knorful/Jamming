@@ -9,6 +9,7 @@ class SearchBar extends Component {
   search = () => {
     const searchTerm = this.state.term;
     this.props.onSearch(searchTerm);
+    this.props.click();
   };
 
   handleTermChange = (e) => {
