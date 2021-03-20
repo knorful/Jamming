@@ -4,7 +4,7 @@
   align-items: center;
   padding: 12rem 0;
   margin-bottom: 6.33rem;
-  background-image: url("./background-photo.jpg");
+  background-image: url("./background-photo.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -12,13 +12,13 @@
 
 .SearchBar input {
   width: 287px;
-  padding: 0.88rem 1.5rem;
-  border: 1px solid rgb(106, 136, 118);
+  padding: 0.88rem 1.8rem;
+  border: 4px solid rgb(106, 136, 118);
   border-radius: 25px;
   margin-bottom: 2.22rem;
-  color: #010c3f;
+  color: #313f37;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .SearchBar input:focus {

@@ -7,6 +7,11 @@
   box-shadow: 0 4px 2px 2px rgb(49, 63, 55);
 }
 
+.results-placeholder {
+  text-align: center;
+  margin-top: 100px;
+}
+
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
