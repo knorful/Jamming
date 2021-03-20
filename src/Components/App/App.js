@@ -83,6 +83,10 @@ class App extends Component {
             />
           </div>
         </main>
+        <footer>
+          <p>Jammming</p>
+          <p>Powered by the Spotify Web API</p>
+        </footer>
       </div>
     );
   }
