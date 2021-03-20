@@ -7,11 +7,17 @@ class SearchResults extends Component {
     return (
       <div className="SearchResults">
         <h2>Results</h2>
-        <TrackList
-          isRemoval={false}
-          onAdd={this.props.onAdd}
-          tracks={this.props.searchResults}
-        />
+        {this.props.searchResults.length ? (
+          <TrackList
+            isRemoval={false}
+            onAdd={this.props.onAdd}
+            tracks={this.props.searchResults}
+          />
+        ) : (
+          <div className="results-placeholder">
+            <p>No Results</p>
+          </div>
+        )}
       </div>
     );
   }

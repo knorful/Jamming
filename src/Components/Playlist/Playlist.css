@@ -55,6 +55,10 @@
   }
 }
 
+.loader {
+  margin-top: 25px;
+}
+
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
