@@ -4,10 +4,11 @@
   align-items: center;
   padding: 12rem 0;
   margin-bottom: 6.33rem;
-  background-image: url("./background-photo.png");
+  background-image: url("../assets/background-photo.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  width: 100vw;
 }
 
 .SearchBar input {
@@ -41,4 +42,10 @@
 
 .SearchButton:hover {
   background-color: rgb(49, 63, 55);
+}
+
+@media only screen and (max-width: 368px) {
+  .SearchBar input {
+    width: 50vw;
+  }
 }

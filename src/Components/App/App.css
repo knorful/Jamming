@@ -13,7 +13,6 @@ h1 {
   padding: 0.77rem 0;
   background-color: rgb(89, 114, 99);
   text-align: center;
-  /* font-family: "Poppins", sans-serif; */
   font-size: 1.88rem;
   color: #fff;
 }
@@ -51,12 +50,26 @@ footer {
 }
 
 footer p {
-  margin: 2.33rem 7.33rem;
+  margin: 2.33rem;
 }
 
 @media only screen and (max-width: 1020px) {
   .App-playlist {
     align-items: center;
     flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  footer p {
+    margin: 0.5rem;
+    font-size: 0.8rem;
+    text-align: center;
   }
 }

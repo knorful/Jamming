@@ -26,6 +26,7 @@ export const Spotify = {
   },
 
   async search(term) {
+    accessToken = accessToken ? accessToken : this.getAccessToken();
     let trackObjects = [];
     try {
       await axios
@@ -34,7 +35,7 @@ export const Spotify = {
         })
         .then((res) => res.data.tracks.items)
         .then((tracks) => {
-          trackObjects = tracks.map((track, i) => {
+          trackObjects = tracks.map((track) => {
             return {
               id: track.id,
               name: track.name,
