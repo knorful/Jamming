@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
-import Login from "../Login/Login";
 import Loader from "react-loader-spinner";
 import { Spotify } from "../../util/Spotify";
 import "./App.css";
