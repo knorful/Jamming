@@ -23,15 +23,36 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 72px;
+  height: fit-content;
 }
 
 .Track-information h3 {
-  margin-bottom: 0.22rem;
+  margin: 0.92rem 0 0.65rem 0;
 }
 
 .Track-information p {
   font-size: 0.83rem;
+  margin-bottom: 1rem;
   font-weight: 300;
   color: rgba(256, 256, 256, 0.8);
+}
+
+.preview-btn {
+  cursor: pointer;
+  background-color: rgb(137, 177, 152);
+  color: white;
+  border-radius: 10px;
+  padding: 0.43rem 0.92rem;
+  border: none;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.preview-btn:hover {
+  background-color: rgb(49, 63, 55);
+}
+
+audio {
+  margin-bottom: 0.66rem;
 }
