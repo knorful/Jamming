@@ -5,13 +5,14 @@ class PlaylistItem extends Component {
   render() {
     return (
       <div className="PlaylistItem">
-        <h3
+        <h3>{this.props.name}</h3>
+        <button
           onClick={() =>
             this.props.selectPlaylist(this.props.name, this.props.id)
           }
         >
-          {this.props.name}
-        </h3>
+          Modify
+        </button>
       </div>
     );
   }

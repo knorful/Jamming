@@ -1,10 +1,32 @@
+.PlaylistItem {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+}
+
 .PlaylistItem h3 {
   padding: 1.33rem;
-  border-bottom: 1px solid rgba(256, 256, 256, 0.8);
 }
 
 .PlaylistItem h3:hover {
   background-color: rgb(137, 177, 152);
   transition: all 0.5s;
+}
+
+.PlaylistItem button {
+  font: 400 13.3333px Arial;
+  background-color: #89b198;
   cursor: pointer;
+  color: #fff;
+  padding: 0.77rem 1rem;
+  border-radius: 54px;
+  border: none;
+  letter-spacing: 1px;
+  transition: background-color 0.25s;
+}
+
+.PlaylistItem button:hover {
+  background-color: rgb(49, 63, 55);
 }
