@@ -88,6 +88,16 @@ class App extends Component {
     });
   };
 
+  selectPlaylist = (playlistName, id) => {
+    console.log("playlistName: ", playlistName);
+    Spotify.getPlaylist(id).then((res) =>
+      this.setState({
+        playlistName: playlistName,
+        playlistTracks: res,
+      })
+    );
+  };
+
   render() {
     return (
       <div>
@@ -121,6 +131,7 @@ class App extends Component {
               onNameChange={this.updatePlaylistName}
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
+              selectPlaylist={this.selectPlaylist}
             />
           </div>
         </main>
