@@ -75,40 +75,62 @@ export const Spotify = {
     return user_id;
   },
 
-  async savePlaylist(playlistName, trackURIs) {
+  async savePlaylist(playlistName, trackURIs, id) {
+    user_id = await this.getCurrentUserId().then((res) => res);
+    accessToken = accessToken ? accessToken : this.getAccessToken();
     if (!playlistName && !trackURIs) {
       return;
     }
-    user_id = await this.getCurrentUserId().then((res) => res);
-    let playlistID = await axios
-      .post(
-        `https://api.spotify.com/v1/users/${user_id}/playlists`,
-        { name: playlistName },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((res) => res.data.id)
-      .catch((e) => console.log("Playlist create failure!", e));
 
-    await axios
-      .post(
-        `https://api.spotify.com/v1/playlists/${playlistID}/tracks`,
-        {
-          uris: trackURIs,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "application/json",
+    if (id) {
+      axios
+        .put(
+          `https://api.spotify.com/v1/users/${user_id}/playlists/${id}`,
+          {
+            name: playlistName,
           },
-        }
-      )
-      .then((res) => console.log("Songs added to playlist", res))
-      .catch((e) => console.log("Error adding songs to playlist!", e));
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => console.log(res))
+        .catch((err) =>
+          console.log("There was an error updating this playlist", err)
+        );
+    } else {
+      let playlistID = await axios
+        .post(
+          `https://api.spotify.com/v1/users/${user_id}/playlists`,
+          { name: playlistName },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => res.data.id)
+        .catch((e) => console.log("Playlist create failure!", e));
+
+      await axios
+        .post(
+          `https://api.spotify.com/v1/playlists/${playlistID}/tracks`,
+          {
+            uris: trackURIs,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => console.log("Songs added to playlist", res))
+        .catch((e) => console.log("Error adding songs to playlist!", e));
+    }
   },
   async getUserPlaylists() {
     user_id = user_id
