@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
+import PlaylistList from "../PlaylistList/PlaylistList";
 import Loader from "react-loader-spinner";
 import { Spotify } from "../../util/Spotify";
 import "./App.css";
@@ -108,6 +109,7 @@ class App extends Component {
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
             />
+            <PlaylistList />
           </div>
         </main>
         <footer>
