@@ -111,11 +111,10 @@ export const Spotify = {
       .catch((e) => console.log("Error adding songs to playlist!", e));
   },
   async getUserPlaylists() {
-    if (user_id) {
-      return user_id;
-    }
-    user_id = await this.getCurrentUserId().then((res) => res);
-    let playlists = axios
+    user_id = user_id
+      ? user_id
+      : await this.getCurrentUserId().then((res) => res);
+    let playlists = await axios
       .get(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -124,6 +123,8 @@ export const Spotify = {
       })
       .then((res) => res.data.items)
       .catch((e) => console.log("error retrieving playlists!"));
+
+    console.log("get user playlists", playlists);
 
     return playlists;
   },
