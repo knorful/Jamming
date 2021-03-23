@@ -4,6 +4,7 @@ const CLIENT_ID = "5585dd32cc0046a0a6ca2f6142633b73";
 const REDIRECT_URI = "http://localhost:3000/callback";
 let accessToken = "";
 let expiresIn = "";
+let user_id = "";
 
 export const Spotify = {
   getAccessToken() {
@@ -26,12 +27,15 @@ export const Spotify = {
   },
 
   async search(term) {
-    accessToken = accessToken ? accessToken : this.getAccessToken();
+    this.getAccessToken();
     let trackObjects = [];
     try {
       await axios
         .get(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
-          headers: { Authorization: `Bearer ${accessToken}` },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
         })
         .then((res) => res.data.tracks.items)
         .then((tracks) => {
@@ -51,29 +55,40 @@ export const Spotify = {
     return trackObjects;
   },
 
-  async savePlaylist(playlistName, trackURIs) {
-    let accessToken = Spotify.getAccessToken();
-    const headers = {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-    };
+  async getCurrentUserId() {
+    accessToken = accessToken ? accessToken : this.getAccessToken();
+    if (user_id) {
+      return user_id;
+    }
 
+    user_id = await axios
+      .get("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => res.data.id)
+      .catch((e) => console.log("User id fetch error!", e));
+
+    return user_id;
+  },
+
+  async savePlaylist(playlistName, trackURIs) {
     if (!playlistName && !trackURIs) {
       return;
     }
-
-    let user_id = await axios
-      .get("https://api.spotify.com/v1/me", headers)
-      .then((res) => res.data.id)
-      .catch((e) => "User id fetch error!");
-
+    user_id = await this.getCurrentUserId().then((res) => res);
     let playlistID = await axios
       .post(
         `https://api.spotify.com/v1/users/${user_id}/playlists`,
         { name: playlistName },
-        headers
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => res.data.id)
       .catch((e) => console.log("Playlist create failure!", e));
@@ -84,9 +99,26 @@ export const Spotify = {
         {
           uris: trackURIs,
         },
-        headers
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
       )
       .then((res) => console.log("Songs added to playlist", res))
       .catch((e) => console.log("Error adding songs to playlist!", e));
+  },
+  async getUserPlaylists() {
+    user_id = await axios
+      .get("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => res.data.id)
+      .catch((e) => "User id fetch error!");
+    axios.get("https://api.spotify.com/v1/users/{user_id}/playlists");
   },
 };

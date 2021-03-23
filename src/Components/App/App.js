@@ -66,7 +66,9 @@ class App extends Component {
 
   savePlaylist = () => {
     let tracksUri = this.state.playlistTracks.map((track) => track.uri);
-    Spotify.savePlaylist(this.state.playlistName, tracksUri);
+    Spotify.savePlaylist(this.state.playlistName, tracksUri)
+      .then((res) => console.log("res:", res))
+      .catch((e) => console.log("Error from App.js", e));
     this.setState({
       playlistName: "New Playlist",
       playlistTracks: [],
@@ -82,7 +84,11 @@ class App extends Component {
           </h1>
         </header>
         <main className="App">
-          <SearchBar onSearch={this.search} click={this.handleSearchClick} />
+          <SearchBar
+            spotify={Spotify.getAccessToken}
+            onSearch={this.search}
+            click={this.handleSearchClick}
+          />
           <div className="App-playlist">
             {!this.state.searching ? (
               <SearchResults
