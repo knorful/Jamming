@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TrackList from "../TrackList/TrackList";
+import PlaylistList from "../PlaylistList/PlaylistList";
 import Loader from "react-loader-spinner";
 import "./Playlist.css";
 
@@ -47,6 +48,7 @@ class Playlist extends Component {
               SAVE TO SPOTIFY
             </button>
             <span className="playlist-msg">{this.state.message}</span>
+            <PlaylistList />
           </>
         ) : (
           <div className="loader">

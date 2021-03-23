@@ -122,7 +122,8 @@ export const Spotify = {
           "Content-Type": "application/json",
         },
       })
-      .then((res) => res.data.items);
+      .then((res) => res.data.items)
+      .catch((e) => console.log("error retrieving playlists!"));
 
     return playlists;
   },
