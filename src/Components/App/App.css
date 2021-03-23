@@ -39,6 +39,21 @@ h2 {
 
 .results-loader {
   margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.results-loader p {
+  margin-right: 20px;
+  color: rgb(89, 114, 99);
+  font-size: 1.5rem;
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 footer {

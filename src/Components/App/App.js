@@ -7,12 +7,17 @@ import { Spotify } from "../../util/Spotify";
 import "./App.css";
 
 class App extends Component {
-  state = {
-    searchResults: [],
-    playlistName: "New Playlist",
-    playlistTracks: [],
-    searching: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchResults: [],
+      playlistName: "New Playlist",
+      playlistTracks: [],
+      searching: false,
+    };
+
+    this.searchRef = React.createRef();
+  }
 
   addTrack = (track) => {
     let copyPlaylist = this.state.playlistTracks.slice();
@@ -54,6 +59,7 @@ class App extends Component {
   };
 
   handleSearchClick = () => {
+    this.handleScrollToSearchResults();
     this.setState({
       searching: true,
     });
@@ -64,10 +70,17 @@ class App extends Component {
     }, 2000);
   };
 
+  handleScrollToSearchResults = () => {
+    window.scrollTo({
+      top: this.searchRef.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
+
   savePlaylist = () => {
     let tracksUri = this.state.playlistTracks.map((track) => track.uri);
     Spotify.savePlaylist(this.state.playlistName, tracksUri)
-      .then((res) => console.log("res:", res))
+      .then((res) => res)
       .catch((e) => console.log("Error from App.js", e));
     this.setState({
       playlistName: "New Playlist",
@@ -89,7 +102,7 @@ class App extends Component {
             onSearch={this.search}
             click={this.handleSearchClick}
           />
-          <div className="App-playlist">
+          <div className="App-playlist" ref={this.searchRef}>
             {!this.state.searching ? (
               <SearchResults
                 onAdd={this.addTrack}
@@ -97,6 +110,7 @@ class App extends Component {
               />
             ) : (
               <div className="results-loader">
+                <p>Searching...</p>
                 <Loader type="Audio" color="#89b198" height={80} width={80} />
               </div>
             )}
