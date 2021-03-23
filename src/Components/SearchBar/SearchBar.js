@@ -4,17 +4,7 @@ import "./SearchBar.css";
 class SearchBar extends Component {
   state = {
     term: sessionStorage.getItem("searchTerm") || "",
-    isLoggedIn: false,
   };
-
-  // checkLogin = () => {
-  //   let getAccessToken = this.props.spotify();
-  //   console.log("here is the access token", getAccessToken);
-  //   let loggedIn = getAccessToken ? true : false;
-  //   this.setState({
-  //     isLoggedIn: loggedIn,
-  //   });
-  // };
 
   search = () => {
     const searchTerm = this.state.term;
@@ -32,6 +22,9 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="SearchBar">
+        <p>
+          Search Spotify to create a custom playlist by song, album, or artist
+        </p>
         <input
           onChange={this.handleTermChange}
           placeholder="Enter A Song, Album, or Artist"
