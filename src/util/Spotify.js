@@ -20,6 +20,7 @@ export const Spotify = {
       expiresIn = expiresInMatch[1];
       window.setTimeout(() => (accessToken = ""), expiresIn * 1000);
       window.history.pushState("Access Token", null, "/");
+      return accessToken;
     } else {
       const redirect = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=token&scope=playlist-modify-public&redirect_uri=${REDIRECT_URI}`;
       window.location = redirect;
@@ -56,7 +57,7 @@ export const Spotify = {
   },
 
   async getCurrentUserId() {
-    accessToken = accessToken ? accessToken : this.getAccessToken();
+    this.getAccessToken();
     if (user_id) {
       return user_id;
     }
@@ -110,15 +111,19 @@ export const Spotify = {
       .catch((e) => console.log("Error adding songs to playlist!", e));
   },
   async getUserPlaylists() {
-    user_id = await axios
-      .get("https://api.spotify.com/v1/me", {
+    if (user_id) {
+      return user_id;
+    }
+    user_id = await this.getCurrentUserId().then((res) => res);
+    let playlists = axios
+      .get(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
         },
       })
-      .then((res) => res.data.id)
-      .catch((e) => "User id fetch error!");
-    axios.get("https://api.spotify.com/v1/users/{user_id}/playlists");
+      .then((res) => res.data.items);
+
+    return playlists;
   },
 };
