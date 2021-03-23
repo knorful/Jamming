@@ -14,6 +14,7 @@ class App extends Component {
       playlistName: "New Playlist",
       playlistTracks: [],
       searching: false,
+      playlistId: null,
     };
 
     this.searchRef = React.createRef();
@@ -79,7 +80,12 @@ class App extends Component {
 
   savePlaylist = () => {
     let tracksUri = this.state.playlistTracks.map((track) => track.uri);
-    Spotify.savePlaylist(this.state.playlistName, tracksUri)
+    console.log("save playlist id", this.state.playlistId);
+    Spotify.savePlaylist(
+      this.state.playlistName,
+      tracksUri,
+      this.state.playlistId
+    )
       .then((res) => res)
       .catch((e) => console.log("Error from App.js", e));
     this.setState({
@@ -89,11 +95,11 @@ class App extends Component {
   };
 
   selectPlaylist = (playlistName, id) => {
-    console.log("playlistName: ", playlistName);
     Spotify.getPlaylist(id).then((res) =>
       this.setState({
         playlistName: playlistName,
         playlistTracks: res,
+        playlistId: id,
       })
     );
   };
