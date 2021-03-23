@@ -52,6 +52,7 @@ class Playlist extends Component {
           </>
         ) : (
           <div className="loader">
+            <p className="loader-msg">Saving...</p>
             <Loader type="Audio" color="#89b198" height={80} width={80} />
           </div>
         )}

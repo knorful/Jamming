@@ -40,12 +40,30 @@
   background-color: rgb(49, 63, 55);
 }
 
+.loader {
+  display: flex;
+  align-items: center;
+}
+
+.loader-msg {
+  color: white;
+  margin-right: 25px;
+  font-size: 1.5rem;
+  animation: blink 1s linear infinite;
+}
+
 .Playlist button {
   margin-bottom: 2rem;
 }
 
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 .playlist-msg {
-  margin-top: 25px;
+  margin: 0 0 25px 0;
   animation-name: fade;
   animation-duration: 3s;
   animation-fill-mode: forwards;
