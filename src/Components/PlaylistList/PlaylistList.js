@@ -15,6 +15,7 @@ class PlaylistList extends Component {
     });
   }
   render() {
+    console.log("user playlists", this.state.userPlaylists);
     let playlists = this.state.userPlaylists.map((playlist) => {
       return (
         <PlaylistItem id={playlist.id} name={playlist.name} key={playlist.id} />

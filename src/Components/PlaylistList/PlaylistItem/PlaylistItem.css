@@ -1,5 +1,10 @@
 .PlaylistItem h3 {
-  margin-bottom: 2rem;
-  padding-bottom: 1.33rem;
+  padding: 1.33rem;
   border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+}
+
+.PlaylistItem h3:hover {
+  background-color: rgb(137, 177, 152);
+  transition: all 0.5s;
+  cursor: pointer;
 }
