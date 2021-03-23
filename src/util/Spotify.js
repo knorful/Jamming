@@ -124,8 +124,33 @@ export const Spotify = {
       .then((res) => res.data.items)
       .catch((e) => console.log("error retrieving playlists!"));
 
-    console.log("get user playlists", playlists);
-
     return playlists;
+  },
+  getPlaylist(id) {
+    user_id = user_id || this.getCurrentUserId();
+    let retrievedPlaylist = axios
+      .get(
+        `https://api.spotify.com/v1/users/${user_id}/playlists/${id}/tracks`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => res.data.items)
+      .then((tracks) => {
+        return tracks.map((track) => {
+          return {
+            id: track.track.id,
+            name: track.track.name,
+            artist: track.track.artists[0].name,
+            album: track.track.album.name,
+            uri: track.track.uri,
+          };
+        });
+      });
+
+    return retrievedPlaylist;
   },
 };
