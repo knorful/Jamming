@@ -41,12 +41,14 @@ export const Spotify = {
         .then((res) => res.data.tracks.items)
         .then((tracks) => {
           trackObjects = tracks.map((track) => {
+            console.log(track);
             return {
               id: track.id,
               name: track.name,
               artist: track.artists[0].name,
               album: track.album.name,
               uri: track.uri,
+              preview_url: track.preview_url,
             };
           });
         });
