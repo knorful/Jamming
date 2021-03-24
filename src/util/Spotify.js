@@ -1,7 +1,7 @@
 import axios from "axios";
 const CLIENT_ID = "5585dd32cc0046a0a6ca2f6142633b73";
-// const REDIRECT_URI = "http://sonics.surge.sh/";
-const REDIRECT_URI = "http://localhost:3000/callback";
+const REDIRECT_URI = "http://sonics.surge.sh/";
+// const REDIRECT_URI = "http://localhost:3000/callback";
 let accessToken = "";
 let expiresIn = "";
 let user_id = "";
@@ -41,7 +41,6 @@ export const Spotify = {
         .then((res) => res.data.tracks.items)
         .then((tracks) => {
           trackObjects = tracks.map((track) => {
-            console.log(track);
             return {
               id: track.id,
               name: track.name,
