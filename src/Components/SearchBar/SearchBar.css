@@ -47,6 +47,12 @@
 
 .SearchButton:hover {
   background-color: rgb(49, 63, 55);
+  border: 1px solid white;
+}
+
+.SearchButton:active,
+.SearchBar:focus {
+  outline: none;
 }
 
 @media only screen and (max-width: 368px) {
