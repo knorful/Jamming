@@ -20,6 +20,10 @@ class App extends Component {
     this.searchRef = React.createRef();
   }
 
+  componentDidMount() {
+    Spotify.getClientAccessToken();
+  }
+
   addTrack = (track) => {
     let copyPlaylist = this.state.playlistTracks.slice();
     if (

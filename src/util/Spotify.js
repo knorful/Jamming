@@ -1,8 +1,11 @@
 import axios from "axios";
+const querystring = require("querystring");
 const CLIENT_ID = "5585dd32cc0046a0a6ca2f6142633b73";
+const CLIENT_SECRET = "b5ea7636fa0040a68554d81a5a626d23";
 // const REDIRECT_URI = "http://sonics.surge.sh/";
 const REDIRECT_URI = "http://localhost:3000/callback";
 let accessToken = "";
+let clientAccessToken = "";
 let expiresIn = "";
 let user_id = "";
 
@@ -27,14 +30,41 @@ export const Spotify = {
     }
   },
 
+  async getClientAccessToken() {
+    // if (clientAccessToken) {
+    //   return clientAccessToken;
+    // }
+
+    let data = {
+      grant_type: "client_credentials",
+      redirectUri: "http://localhost:8000/callback",
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+    };
+
+    clientAccessToken = await axios
+      .post(
+        "https://accounts.spotify.com/api/token",
+        querystring.stringify(data),
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      )
+      .then((res) => res.data.access_token);
+    console.log("client access token", clientAccessToken);
+  },
+
   async search(term) {
-    this.getAccessToken();
+    this.getClientAccessToken();
+    console.log("in search", clientAccessToken);
     let trackObjects = [];
     try {
       await axios
         .get(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${clientAccessToken}`,
             "Content-Type": "application/json",
           },
         })
