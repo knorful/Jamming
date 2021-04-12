@@ -8,7 +8,7 @@ class SearchBar extends Component {
 
   search = () => {
     const searchTerm = this.state.term;
-    sessionStorage.setItem("searchTerm", searchTerm);
+    // sessionStorage.setItem("searchTerm", searchTerm);
     this.props.onSearch(searchTerm);
     this.props.click();
   };

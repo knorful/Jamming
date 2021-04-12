@@ -8,12 +8,12 @@ class PlaylistList extends Component {
     userPlaylists: [],
   };
 
-  async componentDidMount() {
-    let getPlaylists = await Spotify.getUserPlaylists();
-    this.setState({
-      userPlaylists: getPlaylists,
-    });
-  }
+  // async componentDidMount() {
+  //   let getPlaylists = await Spotify.getUserPlaylists();
+  //   this.setState({
+  //     userPlaylists: getPlaylists,
+  //   });
+  // }
   render() {
     let playlists = this.state.userPlaylists.map((playlist) => {
       return (
