@@ -25,14 +25,16 @@ class SearchBar extends Component {
         <p>
           Search Spotify to create a custom playlist by song, album, or artist
         </p>
-        <input
-          onChange={this.handleTermChange}
-          placeholder="Enter A Song, Album, or Artist"
-          value={this.state.term}
-        />
-        <button onClick={this.search} className="SearchButton">
-          SEARCH
-        </button>
+        <div className="search-content">
+          <input
+            onChange={this.handleTermChange}
+            placeholder="Enter A Song, Album, or Artist"
+            value={this.state.term}
+          />
+          <button onClick={this.search} className="SearchButton">
+            SEARCH
+          </button>
+        </div>
       </div>
     );
   }
