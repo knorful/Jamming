@@ -19,6 +19,7 @@ class Track extends Component {
     });
   };
   render() {
+    console.log("props", this.props);
     const add = (
       <button onClick={this.addTrack} className="Track-action">
         +
@@ -34,27 +35,23 @@ class Track extends Component {
     return (
       <div className="Track">
         <div className="Track-information">
-          <h3>{this.props.track.name}</h3>
-          <p>
-            {this.props.track.artist} | {this.props.track.album}
-          </p>
-          {hasPreview ? (
-            <div>
-              <button className="preview-btn" onClick={this.show}>
-                {this.state.show ? (
-                  "X"
-                ) : (
-                  <i class="fas fa-chevron-circle-right"> Preview Track</i>
-                )}
-              </button>
-              {this.state.show ? (
-                <ReactAudioPlayer src={this.props.track.preview_url} controls />
-              ) : null}
-            </div>
-          ) : (
-            <p>No Preview</p>
-          )}
+          <div className="Track-image">
+            <img
+              src={this.props.track.image ? this.props.track.image.url : null}
+              alt={this.props.track.name}
+            />
+          </div>
+          <div style={{ color: "white" }}>
+            <h3>{this.props.track.name}</h3>
+            <p>
+              {this.props.track.artist} | {this.props.track.album}
+            </p>
+            {hasPreview ? (
+              <ReactAudioPlayer src={this.props.track.preview_url} controls />
+            ) : null}
+          </div>
         </div>
+
         {this.props.remove ? remove : add}
       </div>
     );

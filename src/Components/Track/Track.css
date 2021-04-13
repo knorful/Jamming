@@ -1,7 +1,10 @@
 .Track {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+  background-color: rgb(106, 136, 118);
+  box-shadow: 0 4px 2px 2px rgb(49, 63, 55);
+  margin: 25px 0;
+  padding: 2rem;
 }
 
 .Track-action {
@@ -11,7 +14,6 @@
   transition: color 0.25s;
   border: 0px;
   background-color: rgba(0, 0, 0, 0);
-  color: #fff;
 }
 
 .Track-action:hover {
@@ -21,9 +23,13 @@
 .Track-information {
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
   height: fit-content;
+  color: black;
+}
+
+.Track-image {
+  margin-right: 15px;
 }
 
 .Track-information h3 {
@@ -34,7 +40,6 @@
   font-size: 0.83rem;
   margin-bottom: 1rem;
   font-weight: 300;
-  color: rgba(256, 256, 256, 0.8);
 }
 
 .preview-btn {
