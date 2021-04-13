@@ -31,9 +31,9 @@ export const Spotify = {
   },
 
   async getClientAccessToken() {
-    // if (clientAccessToken) {
-    //   return clientAccessToken;
-    // }
+    if (clientAccessToken) {
+      return clientAccessToken;
+    }
 
     let data = {
       grant_type: "client_credentials",
@@ -53,7 +53,6 @@ export const Spotify = {
         }
       )
       .then((res) => res.data.access_token);
-    console.log("client access token", clientAccessToken);
   },
 
   async search(term) {
