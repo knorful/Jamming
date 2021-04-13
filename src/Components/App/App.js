@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
+import TopTracks from "../TopTracks/TopTracks";
 import Loader from "react-loader-spinner";
 import { Spotify } from "../../util/Spotify";
 import "./App.css";
@@ -13,6 +14,7 @@ class App extends Component {
       searchResults: [],
       playlistName: "",
       playlistTracks: [],
+      top50Tracks: [],
       searching: false,
       playlistId: null,
     };
@@ -22,6 +24,11 @@ class App extends Component {
 
   componentDidMount() {
     Spotify.getClientAccessToken();
+    Spotify.getGlobalTop50().then((res) => {
+      this.setState({
+        top50Tracks: res,
+      });
+    });
   }
 
   addTrack = (track) => {
@@ -121,7 +128,11 @@ class App extends Component {
             spotify={Spotify.getAccessToken}
             onSearch={this.search}
             click={this.handleSearchClick}
+            searchResults={this.state.searchResults}
           />
+          <div className="App-top50">
+            <TopTracks top50Tracks={this.state.top50Tracks} />
+          </div>
           <div className="App-playlist" ref={this.searchRef}>
             {!this.state.searching ? (
               <SearchResults
