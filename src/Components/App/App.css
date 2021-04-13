@@ -42,7 +42,7 @@ h2 {
 .App-top50 {
   display: flex;
   justify-content: center;
-  border: 1px solid black;
+  border: 1px solid #4e6657;
 }
 
 .results-loader {
