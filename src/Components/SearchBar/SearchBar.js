@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import "./SearchBar.css";
 
 class SearchBar extends Component {
+  state = {
+    term: "",
+  };
+
   search = () => {
     const searchTerm = this.state.term;
     this.props.onSearch(searchTerm);
@@ -9,7 +13,9 @@ class SearchBar extends Component {
   };
 
   handleTermChange = ({ target }) => {
-    this.props.onSearch(target.value);
+    this.setState({
+      term: target.value,
+    });
   };
 
   render() {
