@@ -21,17 +21,19 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="SearchBar">
-        <p>
-          Search Spotify to create a custom playlist by song, album, or artist
-        </p>
-        <div className="search-content">
-          <input
-            onChange={this.handleTermChange}
-            placeholder="Enter A Song, Album, or Artist"
-          />
-          <button onClick={this.search} className="SearchButton">
-            SEARCH
-          </button>
+        <div className="SearchBar-bg">
+          <p>
+            Search Spotify to create a custom playlist by song, album, or artist
+          </p>
+          <div className="search-content">
+            <input
+              onChange={this.handleTermChange}
+              placeholder="Enter A Song, Album, or Artist"
+            />
+            <button onClick={this.search} className="SearchButton">
+              SEARCH
+            </button>
+          </div>
         </div>
       </div>
     );
