@@ -70,6 +70,7 @@ export const Spotify = {
         .then((res) => res.data.tracks.items)
         .then((tracks) => {
           trackObjects = tracks.map((track) => {
+            console.log("track", track);
             return {
               id: track.id,
               name: track.name,
@@ -77,6 +78,7 @@ export const Spotify = {
               album: track.album.name,
               uri: track.uri,
               preview_url: track.preview_url,
+              image: track.album.images[2],
             };
           });
         });
@@ -204,5 +206,30 @@ export const Spotify = {
       });
 
     return retrievedPlaylist;
+  },
+
+  async getGlobalTop50() {
+    await this.getClientAccessToken();
+    const top50 = await axios
+      .get("https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF", {
+        headers: {
+          Authorization: `Bearer ${clientAccessToken}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => res.data.tracks.items)
+      .then((tracks) => {
+        return tracks.map((track) => {
+          return {
+            id: track.track.id,
+            name: track.track.name,
+            artist: track.track.artists[0].name,
+            album: track.track.album.name,
+            uri: track.track.uri,
+          };
+        });
+      });
+
+    return top50;
   },
 };
