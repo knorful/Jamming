@@ -3,36 +3,38 @@ import "./SearchBar.css";
 
 class SearchBar extends Component {
   state = {
-    term: sessionStorage.getItem("searchTerm") || "",
+    term: "",
   };
 
   search = () => {
     const searchTerm = this.state.term;
-    // sessionStorage.setItem("searchTerm", searchTerm);
     this.props.onSearch(searchTerm);
     this.props.click();
   };
 
-  handleTermChange = (e) => {
+  handleTermChange = ({ target }) => {
     this.setState({
-      term: e.target.value,
+      term: target.value,
     });
   };
 
   render() {
     return (
       <div className="SearchBar">
-        <p>
-          Search Spotify to create a custom playlist by song, album, or artist
-        </p>
-        <input
-          onChange={this.handleTermChange}
-          placeholder="Enter A Song, Album, or Artist"
-          value={this.state.term}
-        />
-        <button onClick={this.search} className="SearchButton">
-          SEARCH
-        </button>
+        <div className="SearchBar-bg">
+          <p>
+            Search Spotify to create a custom playlist by song, album, or artist
+          </p>
+          <div className="search-content">
+            <input
+              onChange={this.handleTermChange}
+              placeholder="Enter A Song, Album, or Artist"
+            />
+            <button onClick={this.search} className="SearchButton">
+              SEARCH
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

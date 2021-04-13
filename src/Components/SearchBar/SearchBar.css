@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding: 12rem 0;
-  margin-bottom: 6.33rem;
+  /* margin-bottom: 2.33rem; */
   background-image: url("../assets/background-photo.png");
   background-size: cover;
   background-position: center;
@@ -15,11 +15,18 @@
   width: 287px;
   padding: 0.88rem 1.8rem;
   border: 4px solid rgb(106, 136, 118);
-  border-radius: 25px;
-  margin-bottom: 2.22rem;
   color: #313f37;
   text-align: center;
   font-size: 1.2rem;
+}
+
+.SearchBar-bg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #26312b7a;
+  padding: 2.33rem;
+  border-radius: 15px;
 }
 
 .SearchBar input:focus {
@@ -34,20 +41,20 @@
 .SearchButton {
   cursor: pointer;
   width: 8.11rem;
-  padding: 0.77rem 0;
-  border-radius: 54px;
+  padding: 1.15rem 0;
   background-color: #89b198;
   text-align: center;
   font-size: 0.833rem;
   transition: background-color 0.25s;
-  border: 0px;
+  border: 4px solid rgb(106, 136, 118);
+  border-left: none;
   color: #fff;
   font-weight: 500;
 }
 
 .SearchButton:hover {
   background-color: rgb(49, 63, 55);
-  border: 1px solid white;
+  border: 4px solid white;
 }
 
 .SearchButton:active,
@@ -55,8 +62,28 @@
   outline: none;
 }
 
-@media only screen and (max-width: 368px) {
+.search-content {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 541px) {
   .SearchBar input {
     width: 50vw;
+  }
+
+  .SearchBar p {
+    line-height: 2rem;
+    text-align: center;
+  }
+
+  .search-content {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 281px) {
+  .SearchBar-bg {
+    padding: 1.33rem;
   }
 }

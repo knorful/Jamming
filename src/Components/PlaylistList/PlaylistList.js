@@ -8,12 +8,6 @@ class PlaylistList extends Component {
     userPlaylists: [],
   };
 
-  // async componentDidMount() {
-  //   let getPlaylists = await Spotify.getUserPlaylists();
-  //   this.setState({
-  //     userPlaylists: getPlaylists,
-  //   });
-  // }
   render() {
     let playlists = this.state.userPlaylists.map((playlist) => {
       return (
@@ -27,8 +21,10 @@ class PlaylistList extends Component {
     });
     return (
       <div className="PlaylistList">
-        <h2>Local Playlists</h2>
-        {playlists}
+        <div>
+          <h2>Local Playlists</h2>
+          {playlists}
+        </div>
       </div>
     );
   }

@@ -35,6 +35,14 @@ h2 {
   display: flex;
   justify-content: space-between;
   padding: 0 17% 10%;
+  background-color: #e1faea;
+  padding-top: 50px;
+}
+
+.App-top50 {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #4e6657;
 }
 
 .results-loader {

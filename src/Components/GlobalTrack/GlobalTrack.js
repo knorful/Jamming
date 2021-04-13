@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import "./Track.css";
+import "./GlobalTrack.css";
 
-class Track extends Component {
+class GlobalTrack extends Component {
   state = {
     show: false,
   };
@@ -19,7 +19,6 @@ class Track extends Component {
     });
   };
   render() {
-    console.log("props", this.props);
     const add = (
       <button onClick={this.addTrack} className="Track-action">
         +
@@ -31,31 +30,27 @@ class Track extends Component {
       </button>
     );
 
-    let hasPreview = this.props.track.preview_url ? true : false;
+    // let hasPreview = this.props.track.preview_url ? true : false;
+    let props = this.props;
     return (
-      <div className="Track">
-        <div className="Track-information">
-          <div className="Track-image">
-            <img
-              src={this.props.track.image ? this.props.track.image.url : null}
-              alt={this.props.track.name}
-            />
-          </div>
-          <div style={{ color: "white" }}>
-            <h3>{this.props.track.name}</h3>
+      <div className="GlobalTrack">
+        <div className="GlobalTrack-information">
+          <p className="GlobalTrack-rank">{props.rank}</p>
+          <div style={{ color: "black" }}>
+            <h3>{props.track.name}</h3>
             <p>
-              {this.props.track.artist} | {this.props.track.album}
+              {props.track.artist} | {props.track.album}
             </p>
-            {hasPreview ? (
+            {/* {hasPreview ? (
               <ReactAudioPlayer src={this.props.track.preview_url} controls />
-            ) : null}
+            ) : null} */}
           </div>
         </div>
 
-        {this.props.remove ? remove : add}
+        {props.remove ? remove : add}
       </div>
     );
   }
 }
 
-export default Track;
+export default GlobalTrack;

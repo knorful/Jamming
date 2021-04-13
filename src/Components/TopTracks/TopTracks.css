@@ -1,0 +1,22 @@
+.TopTracks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 950px;
+  overflow-y: scroll;
+  margin: 20px 0;
+  padding: 1.33rem;
+  border: 3px solid rgb(106, 136, 118);
+  border-radius: 20px;
+  background-color: rgb(157, 208, 178);
+  box-shadow: 0 4px 2px 2px rgb(49 63 55);
+}
+
+.TopTracks-header {
+  -webkit-text-stroke: 1px rgb(90, 114, 99);
+  margin: 50px 0;
+  font-size: 4rem;
+  font-weight: 900;
+  width: 100%;
+  text-align: center;
+}
