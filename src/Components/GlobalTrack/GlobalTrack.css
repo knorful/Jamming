@@ -1,0 +1,14 @@
+.GlobalTrack {
+  color: black;
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid black;
+  width: 100%;
+  padding: 0.48rem;
+  justify-content: space-between;
+}
+
+.GlobalTrack-rank {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
