@@ -116,6 +116,8 @@ export const Spotify = {
     if (!playlistName && !trackURIs) {
       return;
     }
+    console.log("playlist id", id);
+    console.log("playlist uris", trackURIs);
 
     if (id) {
       axios
@@ -154,7 +156,7 @@ export const Spotify = {
         .catch((e) => console.log("Playlist create failure!", e));
     }
     await axios
-      .post(
+      .put(
         `https://api.spotify.com/v1/playlists/${playlistID}/tracks`,
         {
           uris: trackURIs,
