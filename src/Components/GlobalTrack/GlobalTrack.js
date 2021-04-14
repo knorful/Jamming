@@ -22,20 +22,27 @@ class GlobalTrack extends Component {
       </button>
     );
 
-    // let hasPreview = this.props.track.preview_url ? true : false;
     let props = this.props;
+    let hasPreview = props.track.preview_url ? true : false;
     return (
       <div className="GlobalTrack">
         <div className="GlobalTrack-information">
           <p className="GlobalTrack-rank">{props.rank}</p>
-          <div style={{ color: "black" }}>
-            <h3>{props.track.name}</h3>
-            <p>
-              {props.track.artist} | {props.track.album}
-            </p>
-            {/* {hasPreview ? (
-              <ReactAudioPlayer src={this.props.track.preview_url} controls />
-            ) : null} */}
+          <div className="GlobalTrack-content" style={{ color: "black" }}>
+            <div>
+              <h3 style={{ fontSize: "1.33rem" }}>{props.track.name}</h3>
+              <p>
+                {props.track.artist} | {props.track.album}
+              </p>
+            </div>
+            {hasPreview ? (
+              <ReactAudioPlayer
+                className="GlobalTrack-audioPlayer"
+                controlsList="nodownload"
+                src={props.track.preview_url}
+                controls
+              />
+            ) : null}
           </div>
         </div>
 

@@ -16,3 +16,24 @@
   padding: 10px 15px;
   border-radius: 50%;
 }
+
+.GlobalTrack-content {
+  display: flex;
+  align-items: center;
+}
+
+.GlobalTrack-audioPlayer {
+  width: 125px;
+  margin-left: 2rem;
+}
+
+audio::-webkit-media-controls-panel {
+  background: rgb(55, 70, 61);
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: white;
+  border-radius: 50%;
+  padding: 1.33rem;
+  color: white;
+}
