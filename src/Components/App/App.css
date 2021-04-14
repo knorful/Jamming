@@ -118,7 +118,7 @@ footer p {
   margin: 2.33rem;
 }
 
-@media only screen and (max-width: 1540px) {
+@media only screen and (max-width: 1500px) {
   .App-top50 {
     flex-direction: column;
   }
@@ -131,7 +131,7 @@ footer p {
   }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 415px) {
   .App-top50 h1 {
     margin: 0;
   }

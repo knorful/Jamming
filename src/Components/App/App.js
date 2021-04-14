@@ -15,26 +15,22 @@ class App extends Component {
       playlistName: "",
       playlistTracks: [],
       top50Tracks: [],
-      loggedIn: sessionStorage.getItem("navLogin") || false,
+      loggedIn: sessionStorage.getItem("loggedIn") || false,
       searching: false,
       playlistId: null,
+      userPlaylists: [],
     };
 
     this.searchRef = React.createRef();
   }
 
   componentDidMount() {
-    console.log("component mounting...");
     Spotify.getClientAccessToken();
     Spotify.getGlobalTop50().then((res) => {
       this.setState({
         top50Tracks: res,
       });
     });
-  }
-
-  componentWillUnmount() {
-    console.log("component unmounting...");
   }
 
   addTrack = (track) => {
@@ -97,7 +93,6 @@ class App extends Component {
 
   savePlaylist = () => {
     let tracksUri = this.state.playlistTracks.map((track) => track.uri);
-    console.log("save playlist id", this.state.playlistId);
     Spotify.savePlaylist(
       this.state.playlistName,
       tracksUri,
@@ -122,8 +117,14 @@ class App extends Component {
   };
 
   login = () => {
-    sessionStorage.setItem("navLogin", "true");
+    sessionStorage.setItem("loggedIn", "true");
     Spotify.getAccessToken();
+    Spotify.getUserPlaylists().then((res) => {
+      this.setState((st) => ({
+        ...st,
+        userPlaylists: res,
+      }));
+    });
   };
 
   render() {
@@ -186,7 +187,9 @@ class App extends Component {
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
               selectPlaylist={this.selectPlaylist}
-              loggedIn={this.state.loggedIn}
+              login={this.login}
+              isLoggedIn={this.state.loggedIn}
+              userPlaylists={this.state.userPlaylists}
             />
           </div>
         </main>
