@@ -37,3 +37,15 @@ audio::-webkit-media-controls-play-button {
   padding: 1.33rem;
   color: white;
 }
+
+@media only screen and (max-width: 920px) {
+  .GlobalTrack-content {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .GlobalTrack-audioPlayer {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
