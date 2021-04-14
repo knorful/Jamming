@@ -4,9 +4,11 @@ import Track from "../Track/Track";
 
 class TrackList extends Component {
   render() {
+    let uniqTracks = [...new Set(this.props.tracks.map((t) => t))];
+    console.log("uniq tracks", uniqTracks);
     return (
       <div className="TrackList">
-        {this.props.tracks.map((track) => (
+        {uniqTracks.map((track) => (
           <Track
             remove={this.props.isRemoval}
             onRemove={this.props.onRemove}
