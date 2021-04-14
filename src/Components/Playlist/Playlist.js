@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import TrackList from "../TrackList/TrackList";
 import PlaylistList from "../PlaylistList/PlaylistList";
 import Loader from "react-loader-spinner";
+import { Spotify } from "../../util/Spotify";
 import "./Playlist.css";
 
 class Playlist extends Component {
   state = {
     saving: false,
     message: "",
+    userPlaylists: [],
   };
 
   handleNameChange = (e) => {
@@ -16,18 +18,30 @@ class Playlist extends Component {
   };
 
   handleSaveClick = () => {
-    this.setState({
+    this.setState((st) => ({
       saving: true,
-    });
+      ...st,
+    }));
     setTimeout(() => {
       this.setState({
         saving: false,
         message: "Playlist Saved",
       });
     }, 2000);
+
+    this.getPlaylists();
   };
 
+  async getPlaylists() {
+    await Spotify.getUserPlaylists().then((res) => {
+      this.setState({
+        userPlaylists: res,
+      });
+    });
+  }
+
   render() {
+    console.log("rendering...");
     return (
       <div className="Playlist">
         <input
@@ -43,16 +57,21 @@ class Playlist extends Component {
         {!this.state.saving ? (
           <>
             <button
-              onClick={() => {
-                this.props.onSave();
+              onClick={async () => {
+                await this.getPlaylists();
                 this.handleSaveClick();
+                this.props.onSave();
+                this.getPlaylists();
               }}
               className="Playlist-save"
             >
               SAVE TO SPOTIFY
             </button>
             <span className="playlist-msg">{this.state.message}</span>
-            <PlaylistList selectPlaylist={this.props.selectPlaylist} />
+            <PlaylistList
+              userPlaylists={this.state.userPlaylists}
+              selectPlaylist={this.props.selectPlaylist}
+            />
           </>
         ) : (
           <div className="loader">
