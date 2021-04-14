@@ -9,8 +9,7 @@ class Playlist extends Component {
   state = {
     saving: false,
     message: "",
-    userPlaylists: [],
-    loggedIn: this.props.loggedIn || sessionStorage.getItem("loggedIn"),
+    userPlaylists: this.props.userPlaylists,
   };
 
   componentDidMount() {
@@ -27,35 +26,33 @@ class Playlist extends Component {
       saving: true,
     });
     setTimeout(() => {
+      this.getPlaylists();
       this.setState({
         saving: false,
         message: "Playlist Saved",
       });
-    }, 2000);
-
-    this.getPlaylists();
+    }, 200);
   };
 
   async getPlaylists() {
     await Spotify.getUserPlaylists().then((res) => {
-      this.setState({
+      this.setState((st) => ({
+        ...st.userPlaylists,
         userPlaylists: res,
-      });
+      }));
     });
-  }
-
-  logIn() {
-    sessionStorage.setItem("loggedIn", "true");
-    this.getPlaylists();
   }
 
   render() {
     return (
       <div className="Playlist">
-        {!this.state.loggedIn ? (
+        {!this.props.isLoggedIn ? (
           <div style={{ textAlign: "center", marginTop: "100px" }}>
             <p>Log in to begin creating your custom playlist</p>
-            <button onClick={() => this.logIn()} className="Playlist-save">
+            <button
+              onClick={() => this.props.login()}
+              className="Playlist-save"
+            >
               LOGIN TO SPOTIFY
             </button>
           </div>
@@ -75,9 +72,8 @@ class Playlist extends Component {
               <>
                 <button
                   onClick={async () => {
-                    await this.getPlaylists();
                     this.handleSaveClick();
-                    this.props.onSave();
+                    await this.props.onSave();
                     await this.getPlaylists();
                   }}
                   className="Playlist-save"
