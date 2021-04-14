@@ -3,8 +3,12 @@ import "./SearchBar.css";
 
 class SearchBar extends Component {
   state = {
-    term: "",
+    term: sessionStorage.getItem("searchTerm") || "",
   };
+
+  componentDidMount() {
+    console.log("component mounting...");
+  }
 
   search = () => {
     const searchTerm = this.state.term;
@@ -13,6 +17,7 @@ class SearchBar extends Component {
   };
 
   handleTermChange = ({ target }) => {
+    sessionStorage.setItem("searchTerm", target.value);
     this.setState({
       term: target.value,
     });
@@ -29,6 +34,7 @@ class SearchBar extends Component {
             <input
               onChange={this.handleTermChange}
               placeholder="Enter A Song, Album, or Artist"
+              value={this.state.term}
             />
             <button onClick={this.search} className="SearchButton">
               SEARCH

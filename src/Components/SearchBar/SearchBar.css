@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   padding: 12rem 0;
-  /* margin-bottom: 2.33rem; */
   background-image: url("../assets/background-photo.png");
   background-size: cover;
   background-position: center;
@@ -41,7 +40,7 @@
 .SearchButton {
   cursor: pointer;
   width: 8.11rem;
-  padding: 1.15rem 0;
+  padding: 1.125rem 0;
   background-color: #89b198;
   text-align: center;
   font-size: 0.833rem;
