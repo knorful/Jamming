@@ -10,7 +10,7 @@
 .Track-action {
   cursor: pointer;
   padding: 0.5rem;
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   transition: color 0.25s;
   border: 0px;
   background-color: rgba(0, 0, 0, 0);
@@ -40,6 +40,10 @@
   font-size: 0.83rem;
   margin-bottom: 1rem;
   font-weight: 300;
+}
+
+.Track-audioPlayer {
+  width: 130px;
 }
 
 .preview-btn {

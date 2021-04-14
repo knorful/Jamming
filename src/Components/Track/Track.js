@@ -41,12 +41,17 @@ class Track extends Component {
             />
           </div>
           <div style={{ color: "white" }}>
-            <h3>{this.props.track.name}</h3>
+            <h3 style={{ fontSize: "1.33rem" }}>{this.props.track.name}</h3>
             <p>
               {this.props.track.artist} | {this.props.track.album}
             </p>
             {hasPreview ? (
-              <ReactAudioPlayer src={this.props.track.preview_url} controls />
+              <ReactAudioPlayer
+                className="Track-audioPlayer"
+                src={this.props.track.preview_url}
+                controls
+                controlsList="nodownload"
+              />
             ) : null}
           </div>
         </div>
