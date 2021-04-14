@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 950px;
+  height: 550px;
   overflow-y: scroll;
   margin: 20px 0;
   padding: 1.33rem;

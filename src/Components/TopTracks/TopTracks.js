@@ -11,6 +11,9 @@ class TopTracks extends Component {
     return (
       <div className="TopTracks">
         <h2 className="TopTracks-header">Global Top 50</h2>
+        <p style={{ width: "100%", textAlign: "center", marginBottom: "15px" }}>
+          Spotify's daily update of the most played tracks right now - Global
+        </p>
         {this.props.top50Tracks.map((track, i) => (
           <GlobalTrack key={track.uri} rank={`${i + 1}`} track={track} />
         ))}
