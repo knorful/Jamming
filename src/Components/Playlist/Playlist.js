@@ -10,7 +10,7 @@ class Playlist extends Component {
     saving: false,
     message: "",
     userPlaylists: [],
-    loggedIn: sessionStorage.getItem("loggedIn") || false,
+    loggedIn: this.props.loggedIn || sessionStorage.getItem("loggedIn"),
   };
 
   componentDidMount() {
