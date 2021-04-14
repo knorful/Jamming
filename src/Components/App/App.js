@@ -130,12 +130,20 @@ class App extends Component {
             click={this.handleSearchClick}
             searchResults={this.state.searchResults}
           />
-          <div className="App-top50">
-            <TopTracks
-              onAdd={this.addTrack}
-              onRemove={this.removeTrack}
-              top50Tracks={this.state.top50Tracks}
-            />
+          <div className="App-global">
+            <div className="App-top50">
+              <div>
+                <h1>Don't know where to start?</h1>
+                <p style={{ color: "black", marginTop: "10px" }}>
+                  Browse the top 50 songs in the world on Spotify
+                </p>
+              </div>
+              <TopTracks
+                onAdd={this.addTrack}
+                onRemove={this.removeTrack}
+                top50Tracks={this.state.top50Tracks}
+              />
+            </div>
           </div>
           <div className="App-playlist" ref={this.searchRef}>
             {!this.state.searching ? (
