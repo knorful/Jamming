@@ -1,0 +1,4 @@
+export let config = {
+  CLIENT_ID: "5585dd32cc0046a0a6ca2f6142633b73",
+  CLIENT_SECRET: "b5ea7636fa0040a68554d81a5a626d23",
+};
