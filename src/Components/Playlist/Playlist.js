@@ -54,7 +54,7 @@ class Playlist extends Component {
     return (
       <div className="Playlist">
         {!this.state.loggedIn ? (
-          <div>
+          <div style={{ textAlign: "center", marginTop: "100px" }}>
             <p>Log in to begin creating your custom playlist</p>
             <button onClick={() => this.logIn()} className="Playlist-save">
               LOGIN TO SPOTIFY
