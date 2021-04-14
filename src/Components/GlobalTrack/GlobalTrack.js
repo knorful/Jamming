@@ -9,9 +9,6 @@ class GlobalTrack extends Component {
   addTrack = () => {
     this.props.onAdd(this.props.track);
   };
-  removeTrack = () => {
-    this.props.onRemove(this.props.track);
-  };
 
   show = () => {
     this.setState({
@@ -22,11 +19,6 @@ class GlobalTrack extends Component {
     const add = (
       <button onClick={this.addTrack} className="Track-action">
         +
-      </button>
-    );
-    const remove = (
-      <button onClick={this.removeTrack} className="Track-action">
-        -
       </button>
     );
 
@@ -47,7 +39,7 @@ class GlobalTrack extends Component {
           </div>
         </div>
 
-        {props.remove ? remove : add}
+        {add}
       </div>
     );
   }

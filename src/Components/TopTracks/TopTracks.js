@@ -15,7 +15,12 @@ class TopTracks extends Component {
           Spotify's daily update of the most played tracks right now - Global
         </p>
         {this.props.top50Tracks.map((track, i) => (
-          <GlobalTrack key={track.uri} rank={`${i + 1}`} track={track} />
+          <GlobalTrack
+            onAdd={this.props.onAdd}
+            key={track.uri}
+            rank={`${i + 1}`}
+            track={track}
+          />
         ))}
       </div>
     );

@@ -131,7 +131,11 @@ class App extends Component {
             searchResults={this.state.searchResults}
           />
           <div className="App-top50">
-            <TopTracks top50Tracks={this.state.top50Tracks} />
+            <TopTracks
+              onAdd={this.addTrack}
+              onRemove={this.removeTrack}
+              top50Tracks={this.state.top50Tracks}
+            />
           </div>
           <div className="App-playlist" ref={this.searchRef}>
             {!this.state.searching ? (
