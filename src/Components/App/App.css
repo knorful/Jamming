@@ -9,7 +9,15 @@ html {
   font-size: 18px;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: rgb(89, 114, 99);
+}
+
 h1 {
+  margin-right: 40px;
   padding: 0.77rem 0;
   background-color: rgb(89, 114, 99);
   text-align: center;
@@ -29,6 +37,18 @@ h2 {
   height: 100%;
   font-weight: 500;
   color: #fff;
+}
+
+.App-header {
+  display: flex;
+  width: 70%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.App-header p {
+  font-size: 1rem;
+  color: white;
 }
 
 .App-playlist {

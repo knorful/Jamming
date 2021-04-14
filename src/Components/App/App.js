@@ -15,6 +15,7 @@ class App extends Component {
       playlistName: "",
       playlistTracks: [],
       top50Tracks: [],
+      loggedIn: sessionStorage.getItem("navLogin") || false,
       searching: false,
       playlistId: null,
     };
@@ -23,12 +24,17 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log("component mounting...");
     Spotify.getClientAccessToken();
     Spotify.getGlobalTop50().then((res) => {
       this.setState({
         top50Tracks: res,
       });
     });
+  }
+
+  componentWillUnmount() {
+    console.log("component unmounting...");
   }
 
   addTrack = (track) => {
@@ -115,13 +121,27 @@ class App extends Component {
     );
   };
 
+  login = () => {
+    sessionStorage.setItem("navLogin", "true");
+    Spotify.getAccessToken();
+  };
+
   render() {
+    let showLogin = this.state.loggedIn ? false : true;
     return (
       <div>
         <header>
-          <h1>
-            Ja<span className="highlight">mmm</span>ing
-          </h1>
+          <div className="App-header">
+            <h1>
+              Ja<span className="highlight">mmm</span>ing
+            </h1>
+            <button
+              style={{ visibility: showLogin ? "visible" : "hidden" }}
+              onClick={this.login}
+            >
+              login to Spotify
+            </button>
+          </div>
         </header>
         <main className="App">
           <SearchBar
@@ -165,6 +185,7 @@ class App extends Component {
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
               selectPlaylist={this.selectPlaylist}
+              loggedIn={this.state.loggedIn}
             />
           </div>
         </main>
