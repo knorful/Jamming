@@ -4,7 +4,6 @@ import "./PlaylistList.css";
 
 class PlaylistList extends Component {
   render() {
-    console.log("playlistlist", this.props);
     let playlists = this.props.userPlaylists.map((playlist) => {
       return (
         <PlaylistItem
