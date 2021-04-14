@@ -57,7 +57,6 @@ export const Spotify = {
 
   async search(term) {
     this.getClientAccessToken();
-    console.log("in search", clientAccessToken);
     let trackObjects = [];
     try {
       await axios
@@ -70,7 +69,6 @@ export const Spotify = {
         .then((res) => res.data.tracks.items)
         .then((tracks) => {
           trackObjects = tracks.map((track) => {
-            console.log("track", track);
             return {
               id: track.id,
               name: track.name,
@@ -108,7 +106,9 @@ export const Spotify = {
   },
 
   async savePlaylist(playlistName, trackURIs, id) {
-    user_id = await this.getCurrentUserId().then((res) => res);
+    user_id = user_id
+      ? user_id
+      : await this.getCurrentUserId().then((res) => res);
     accessToken = accessToken ? accessToken : this.getAccessToken();
     if (!playlistName && !trackURIs) {
       return;
@@ -160,7 +160,7 @@ export const Spotify = {
             },
           }
         )
-        .then((res) => console.log("Songs added to playlist", res))
+        .then((res) => console.log("Songs added to playlist on save", res))
         .catch((e) => console.log("Error adding songs to playlist!", e));
     }
   },
@@ -168,6 +168,7 @@ export const Spotify = {
     user_id = user_id
       ? user_id
       : await this.getCurrentUserId().then((res) => res);
+    accessToken = accessToken ? accessToken : this.getAccessToken();
     let playlists = await axios
       .get(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
         headers: {
@@ -177,7 +178,7 @@ export const Spotify = {
       })
       .then((res) => res.data.items)
       .catch((e) => console.log("error retrieving playlists!"));
-
+    console.log("get playlists", playlists);
     return playlists;
   },
   getPlaylist(id) {

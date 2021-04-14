@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import PlaylistItem from "./PlaylistItem/PlaylistItem";
-import { Spotify } from "../../util/Spotify";
 import "./PlaylistList.css";
 
 class PlaylistList extends Component {
-  state = {
-    userPlaylists: [],
-  };
-
   render() {
-    let playlists = this.state.userPlaylists.map((playlist) => {
+    let playlists = this.props.userPlaylists.map((playlist) => {
       return (
         <PlaylistItem
           selectPlaylist={this.props.selectPlaylist}
