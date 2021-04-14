@@ -202,6 +202,8 @@ export const Spotify = {
             artist: track.track.artists[0].name,
             album: track.track.album.name,
             uri: track.track.uri,
+            preview_url: track.track.preview_url,
+            image: track.track.album.images[2],
           };
         });
       });
@@ -227,6 +229,8 @@ export const Spotify = {
             artist: track.track.artists[0].name,
             album: track.track.album.name,
             uri: track.track.uri,
+            preview_url: track.track.preview_url,
+            image: track.track.album.images[2],
           };
         });
       });
