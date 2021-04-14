@@ -136,6 +136,7 @@ class App extends Component {
               Ja<span className="highlight">mmm</span>ing
             </h1>
             <button
+              className="App-login"
               style={{ visibility: showLogin ? "visible" : "hidden" }}
               onClick={this.login}
             >

@@ -51,6 +51,22 @@ h2 {
   color: white;
 }
 
+.App-login {
+  padding: 0.65rem;
+  border-radius: 4px;
+  border: none;
+  background-color: rgb(89, 114, 99);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.App-login:hover {
+  background-color: #9fd1b2;
+  color: rgb(89, 114, 99);
+  transition: all 0.3s;
+}
+
 .App-playlist {
   display: flex;
   justify-content: space-between;
@@ -102,6 +118,12 @@ footer p {
   margin: 2.33rem;
 }
 
+@media only screen and (max-width: 1540px) {
+  .App-top50 {
+    flex-direction: column;
+  }
+}
+
 @media only screen and (max-width: 1020px) {
   .App-playlist {
     align-items: center;
@@ -110,6 +132,22 @@ footer p {
 }
 
 @media only screen and (max-width: 360px) {
+  .App-top50 h1 {
+    margin: 0;
+  }
+  .App-header {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .App-header h1 {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-right: 0;
+  }
+
   footer {
     display: flex;
     flex-direction: column;
@@ -120,12 +158,6 @@ footer p {
     margin: 0.5rem;
     font-size: 0.8rem;
     text-align: center;
-  }
-}
-
-@media only screen and (max-width: 1540px) {
-  .App-top50 {
-    flex-direction: column;
   }
 }
 
