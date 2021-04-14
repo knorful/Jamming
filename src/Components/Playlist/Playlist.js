@@ -50,7 +50,6 @@ class Playlist extends Component {
   }
 
   render() {
-    console.log("rendering...");
     return (
       <div className="Playlist">
         {!this.state.loggedIn ? (
