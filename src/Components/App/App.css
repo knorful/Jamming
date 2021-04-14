@@ -103,6 +103,19 @@ footer p {
   }
 }
 
+@media only screen and (max-width: 1540px) {
+  .App-top50 {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 281px) {
+  .App-playlist {
+    width: 100%;
+    padding: 0;
+  }
+}
+
 audio::-webkit-media-controls-mute-button,
 audio::-webkit-media-controls-timeline-container,
 audio::-webkit-media-controls-current-time-display,
