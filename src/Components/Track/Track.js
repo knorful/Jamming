@@ -19,7 +19,6 @@ class Track extends Component {
     });
   };
   render() {
-    console.log("props", this.props);
     const add = (
       <button onClick={this.addTrack} className="Track-action">
         +
