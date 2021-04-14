@@ -18,6 +18,7 @@ class Track extends Component {
       show: !this.state.show,
     });
   };
+
   render() {
     const add = (
       <button onClick={this.addTrack} className="Track-action">

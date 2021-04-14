@@ -10,6 +10,7 @@ let accessToken = "";
 let clientAccessToken = "";
 let expiresIn = "";
 let user_id = "";
+let playlistID = "";
 
 export const Spotify = {
   getAccessToken() {
@@ -39,7 +40,7 @@ export const Spotify = {
 
     let data = {
       grant_type: "client_credentials",
-      redirectUri: "http://localhost:8000/callback",
+      redirectUri: `${REDIRECT_URI}`,
       client_id: CLIENT_ID,
       client_secret: CLIENT_SECRET,
     };
@@ -135,7 +136,7 @@ export const Spotify = {
           console.log("There was an error updating this playlist", err)
         );
     } else {
-      let playlistID = await axios
+      playlistID = await axios
         .post(
           `https://api.spotify.com/v1/users/${user_id}/playlists`,
           { name: playlistName },
@@ -146,25 +147,27 @@ export const Spotify = {
             },
           }
         )
-        .then((res) => res.data.id)
+        .then((res) => {
+          console.log("id", res.data.id);
+          return res.data.id;
+        })
         .catch((e) => console.log("Playlist create failure!", e));
-
-      await axios
-        .post(
-          `https://api.spotify.com/v1/playlists/${playlistID}/tracks`,
-          {
-            uris: trackURIs,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((res) => console.log("Songs added to playlist on save", res))
-        .catch((e) => console.log("Error adding songs to playlist!", e));
     }
+    await axios
+      .post(
+        `https://api.spotify.com/v1/playlists/${playlistID}/tracks`,
+        {
+          uris: trackURIs,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => console.log("Songs added to playlist on save", res))
+      .catch((e) => console.log("Error adding songs to playlist!", e));
   },
   async getUserPlaylists() {
     user_id = user_id
@@ -180,7 +183,7 @@ export const Spotify = {
       })
       .then((res) => res.data.items)
       .catch((e) => console.log("error retrieving playlists!"));
-    console.log("get playlists", playlists);
+
     return playlists;
   },
   getPlaylist(id) {
