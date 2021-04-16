@@ -47,7 +47,6 @@ class App extends Component {
   };
 
   removeTrack = (track) => {
-    console.log("remove track", track);
     let newPlaylist = this.state.playlistTracks.filter((song, i) => {
       Spotify.removeTracksFromPlaylist(song.uri, i);
       return song.id !== track.id;
