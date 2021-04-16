@@ -17,10 +17,12 @@ class PlaylistList extends Component {
 
     return (
       <div className="PlaylistList">
-        <div>
-          <h2>Local Playlists</h2>
-          {playlists}
-        </div>
+        {this.props.userPlaylists.length ? (
+          <div>
+            <h2>Local Playlists</h2>
+            {playlists}
+          </div>
+        ) : null}
       </div>
     );
   }

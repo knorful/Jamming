@@ -118,7 +118,6 @@ class App extends Component {
   };
 
   login = () => {
-    sessionStorage.setItem("loggedIn", "true");
     Spotify.getAccessToken();
     Spotify.getUserPlaylists().then((res) => {
       this.setState((st) => ({
@@ -126,6 +125,7 @@ class App extends Component {
         userPlaylists: res,
       }));
     });
+    sessionStorage.setItem("loggedIn", "true");
   };
 
   render() {
