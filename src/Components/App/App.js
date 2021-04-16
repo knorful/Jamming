@@ -169,6 +169,7 @@ class App extends Component {
                 onAdd={this.addTrack}
                 onRemove={this.removeTrack}
                 top50Tracks={this.state.top50Tracks}
+                loggedIn={this.state.loggedIn}
               />
             </div>
           </div>
@@ -177,6 +178,7 @@ class App extends Component {
               <SearchResults
                 onAdd={this.addTrack}
                 searchResults={this.state.searchResults}
+                loggedIn={this.state.loggedIn}
               />
             ) : (
               <div className="results-loader">
@@ -193,7 +195,7 @@ class App extends Component {
               playlistTracks={this.state.playlistTracks}
               selectPlaylist={this.selectPlaylist}
               login={this.login}
-              isLoggedIn={this.state.loggedIn}
+              loggedIn={this.state.loggedIn}
               userPlaylists={this.state.userPlaylists}
             />
           </div>

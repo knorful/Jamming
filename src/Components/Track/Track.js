@@ -32,6 +32,7 @@ class Track extends Component {
     );
 
     let hasPreview = this.props.track.preview_url ? true : false;
+    // console.log("props", this.props);
     return (
       <div className="Track">
         <div className="Track-information">
@@ -57,7 +58,7 @@ class Track extends Component {
           </div>
         </div>
 
-        {this.props.remove ? remove : add}
+        {this.props.loggedIn ? (this.props.remove ? remove : add) : null}
       </div>
     );
   }

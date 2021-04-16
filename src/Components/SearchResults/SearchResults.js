@@ -12,6 +12,7 @@ class SearchResults extends Component {
             isRemoval={false}
             onAdd={this.props.onAdd}
             tracks={this.props.searchResults}
+            loggedIn={this.props.loggedIn}
           />
         ) : (
           <div className="results-placeholder">

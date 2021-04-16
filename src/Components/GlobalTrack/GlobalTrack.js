@@ -46,7 +46,7 @@ class GlobalTrack extends Component {
           </div>
         </div>
 
-        {add}
+        {this.props.loggedIn ? add : null}
       </div>
     );
   }

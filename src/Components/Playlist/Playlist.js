@@ -44,9 +44,10 @@ class Playlist extends Component {
   }
 
   render() {
+    console.log("playlist props", this.props);
     return (
       <div className="Playlist">
-        {!this.props.isLoggedIn ? (
+        {!this.props.loggedIn ? (
           <div style={{ textAlign: "center", marginTop: "100px" }}>
             <p>Log in to begin creating your custom playlist</p>
             <button
@@ -67,6 +68,7 @@ class Playlist extends Component {
               onRemove={this.props.onRemove}
               isRemoval={true}
               tracks={this.props.playlistTracks}
+              loggedIn={this.props.loggedIn}
             />
             {!this.state.saving ? (
               <>

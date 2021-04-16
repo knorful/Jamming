@@ -20,6 +20,7 @@ class TopTracks extends Component {
             key={track.uri}
             rank={`${i + 1}`}
             track={track}
+            loggedIn={this.props.loggedIn}
           />
         ))}
       </div>

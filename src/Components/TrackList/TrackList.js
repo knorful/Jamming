@@ -13,6 +13,7 @@ class TrackList extends Component {
             onAdd={this.props.onAdd}
             key={track.id}
             track={track}
+            loggedIn={this.props.loggedIn}
           />
         ))}
       </div>
