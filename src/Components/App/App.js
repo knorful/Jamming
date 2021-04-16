@@ -47,9 +47,11 @@ class App extends Component {
   };
 
   removeTrack = (track) => {
-    let newPlaylist = this.state.playlistTracks.filter(
-      (song) => song.id !== track.id
-    );
+    console.log("remove track", track);
+    let newPlaylist = this.state.playlistTracks.filter((song, i) => {
+      Spotify.removeTracksFromPlaylist(song.uri, i);
+      return song.id !== track.id;
+    });
 
     this.setState({
       playlistTracks: newPlaylist,
@@ -136,13 +138,16 @@ class App extends Component {
             <h1>
               Ja<span className="highlight">mmm</span>ing
             </h1>
-            <button
-              className="App-login"
-              style={{ visibility: showLogin ? "visible" : "hidden" }}
-              onClick={this.login}
-            >
-              login to Spotify
-            </button>
+            <div className="App-loginContainer">
+              <button
+                className="App-login"
+                style={{ visibility: showLogin ? "visible" : "hidden" }}
+                onClick={this.login}
+              >
+                login{" "}
+              </button>
+              <i style={{ fontSize: "2rem" }} class="fab fa-spotify"></i>
+            </div>
           </div>
         </header>
         <main className="App">

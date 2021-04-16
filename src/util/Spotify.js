@@ -170,6 +170,22 @@ export const Spotify = {
       )
       .then((res) => console.log("Songs added to playlist on save", res))
       .catch((e) => console.log("Error adding songs to playlist!", e));
+    console.log("playlistID", playlistID);
+  },
+  async removeTracksFromPlaylist(trackURI, position) {
+    console.log("track and position", trackURI, position);
+    accessToken = accessToken ? accessToken : this.getAccessToken();
+    if (playlistID) {
+      await axios
+        .delete(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`, {
+          data: { tracks: [{ uri: trackURI }] },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => console.log(res));
+    }
   },
   async getUserPlaylists() {
     user_id = user_id
@@ -185,7 +201,6 @@ export const Spotify = {
       })
       .then((res) => res.data.items)
       .catch((e) => console.log("error retrieving playlists!"));
-
     return playlists;
   },
   getPlaylist(id) {
@@ -214,7 +229,7 @@ export const Spotify = {
           };
         });
       });
-
+    console.log("retrieved playlist", retrievedPlaylist);
     return retrievedPlaylist;
   },
 
