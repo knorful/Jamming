@@ -23,6 +23,12 @@ class SearchBar extends Component {
     });
   };
 
+  handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      this.search();
+    }
+  };
+
   render() {
     return (
       <div className="SearchBar">
@@ -34,6 +40,7 @@ class SearchBar extends Component {
             <input
               onChange={this.handleTermChange}
               placeholder="Enter A Song, Album, or Artist"
+              onKeyPress={this.handleKeyPress}
               value={this.state.term}
             />
             <button onClick={this.search} className="SearchButton">
