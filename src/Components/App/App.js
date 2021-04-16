@@ -146,7 +146,7 @@ class App extends Component {
               >
                 login{" "}
               </button>
-              <i style={{ fontSize: "2rem" }} class="fab fa-spotify"></i>
+              <i style={{ fontSize: "2rem" }} className="fab fa-spotify"></i>
             </div>
           </div>
         </header>
