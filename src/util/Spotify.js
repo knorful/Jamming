@@ -116,8 +116,6 @@ export const Spotify = {
     if (!playlistName && !trackURIs) {
       return;
     }
-    console.log("playlist id", id);
-    console.log("playlist uris", trackURIs);
 
     if (id) {
       axios
@@ -150,7 +148,6 @@ export const Spotify = {
           }
         )
         .then((res) => {
-          console.log("id", res.data.id);
           return res.data.id;
         })
         .catch((e) => console.log("Playlist create failure!", e));
@@ -170,7 +167,6 @@ export const Spotify = {
       )
       .then((res) => console.log("Songs added to playlist on save", res))
       .catch((e) => console.log("Error adding songs to playlist!", e));
-    console.log("playlistID", playlistID);
   },
   async removeTracksFromPlaylist(trackURI, position) {
     console.log("track and position", trackURI, position);
