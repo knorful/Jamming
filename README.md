@@ -12,6 +12,7 @@ This is the main repo codebase of [Jammming](http://sonics.surge.sh/). All code 
     - [Technologies](#technologies)
     - [Folder Structure](#structure)
 3. [Setup Process](#setup)
+4. [Acknowledgements](#acknowledgements)
 
 ## Introduction <a id="introduction"></a>
 ### Vision <a id="vision"></a>
@@ -35,3 +36,8 @@ jammming/src
 * Clone or download the repo
 * Open the directory and run **npm** to install
 * Run development application by using **npm start**
+
+## Acknowledgements
+This project uses the [Spotify API](https://developer.spotify.com/documentation/web-api/) to retrieve results for the top 50 songs on Spotify and user friendly functionality such as creating, modifying, and saving playlists.
+
+This was an idea given to me by Codecademy. All features such as modifying existing and current playlists, retrieving top 50 songs, and providing play samples for selected tracks are all my implementation.
