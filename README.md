@@ -26,7 +26,7 @@ A web application, built with React and Spotify API, that allows users to search
 ### Folder Structure <a id="structure"></a>
 jammming
   - public # project files used for frontend
-  - src # frontend SPA
+  - src    # frontend SPA
   
 jammming/src
   * components  # reusable parts
