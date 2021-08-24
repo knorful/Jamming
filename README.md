@@ -19,7 +19,7 @@ This is the main repo codebase of [Jammming](http://sonics.surge.sh/). All code 
 A web application, built with React and Spotify API, that allows users to search the Spotify library, create a custom playlist, modify exisiting playlists, and then save the playlist to their Spotify accounts. (Requires having a Spotify account for playlists to be saved.)
 
 ## Codebase <a id="codebase"></a>
-###Technologies <a id="technologies"></a>
+### Technologies <a id="technologies"></a>
 - React - Front End Library
 - Spotify API
 
